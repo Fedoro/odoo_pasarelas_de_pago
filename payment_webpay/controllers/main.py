@@ -127,7 +127,7 @@ class WebpayController(http.Controller):
     def redirect_webpay(self, **post):
         acquirer_id = int(post.get('acquirer_id'))
         acquirer = request.env['payment.acquirer'].browse(acquirer_id)
-        result =  acquirer.initTransaction(post)
+        result = acquirer.initTransaction(post)
         urequest = urllib2.Request(result['url'], werkzeug.url_encode({'token_ws': result['token']}))
         uopen = urllib2.urlopen(urequest)
         resp = uopen.read()
